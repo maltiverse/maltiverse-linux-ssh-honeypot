@@ -11,7 +11,7 @@ from maltiverse import Maltiverse
 
 class maltiverse_linux_ssh_honeypot():
 
-    def __init__(self, email, password):
+    def __init__(self, email=None, password=None):
         """Construction method"""
         self.email = email
         self.password = password
@@ -19,12 +19,12 @@ class maltiverse_linux_ssh_honeypot():
         # Trying to get credentials from OS environment if not provided by parameters
         if not self.email or not self.password:
             try:
-                env_email = os.environ['MALTIVERSE_EMAIL']
+                self.email = os.environ['MALTIVERSE_EMAIL']
             except:
                 raise Exception('No credentials provided')
 
             try:
-                env_password = os.environ['MALTIVERSE_PASSWORD']
+                self.password = os.environ['MALTIVERSE_PASSWORD']
             except:
                 raise Exception('No credentials provided')
 
@@ -42,8 +42,6 @@ class maltiverse_linux_ssh_honeypot():
         #Using python-maltiverse library we upload all the IP's to the platform.
         api = Maltiverse()
         if api.login(email=self.email, password=self.password):
-
-            ip_list = ['218.94.101.18']
             for element in ip_list:
                 ip_dict = {
                         'ip_addr': element,
