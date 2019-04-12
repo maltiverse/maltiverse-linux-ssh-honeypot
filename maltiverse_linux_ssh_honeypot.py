@@ -64,7 +64,7 @@ class maltiverse_linux_ssh_honeypot():
                 print json.dumps(ip_dict, indent=4, sort_keys=True)
                 print json.dumps(res, indent=4, sort_keys=True)
         else:
-            raise Exception('No credentials provided')
+            raise Exception('Login failed')
 
 
 if __name__ == "__main__":
