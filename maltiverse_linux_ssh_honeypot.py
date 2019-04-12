@@ -19,12 +19,12 @@ class maltiverse_linux_ssh_honeypot():
         # Trying to get credentials from OS environment if not provided by parameters
         if not self.email or not self.password:
             try:
-                env_email = os.environ.get('MALTIVERSE_EMAIL')
+                env_email = os.environ['MALTIVERSE_EMAIL']
             except:
                 raise Exception('No credentials provided')
 
             try:
-                env_password = os.environ.get('MALTIVERSE_PASSWORD')
+                env_password = os.environ['MALTIVERSE_PASSWORD']
             except:
                 raise Exception('No credentials provided')
 
@@ -32,14 +32,15 @@ class maltiverse_linux_ssh_honeypot():
 
     def run(self):
         """Run method. Retrieves logs related to the SSH service and parses the IP addresses that failed login"""
+
+        #Reading failed attempts to log into SSH service and saving the IP list into an array
         os.system('cat /var/log/auth.log | grep Failed | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" | sort | uniq > /tmp/ssh_attackers.log')
         file = open("/tmp/ssh_attackers.log", "r")
         data = file.read()
         ip_list= data.split('\n')
 
-
+        #Using python-maltiverse library we upload all the IP's to the platform.
         api = Maltiverse()
-
         if api.login(email=self.email, password=self.password):
 
             ip_list = ['218.94.101.18']
@@ -56,8 +57,6 @@ class maltiverse_linux_ssh_honeypot():
 
                 #Upload indicator to Maltiverse
                 res = api.ip_put(ip_dict)
-
-                print api.__dict__
 
                 print ""
                 print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"

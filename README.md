@@ -1,15 +1,15 @@
 ![](https://maltiverse.com/assets/images/logo/logo_letters_black.png)
 
 # maltiverse-linux-ssh-honeypot
-Linux SSH honeypot to contribute to the Maltiverse Search Engine [maltiverse.com](https://www.maltiverse.com/).
+Maltiverse Linux SSH honeypot is a script to contribute to the Maltiverse Search Engine [maltiverse.com](https://www.maltiverse.com/).
 
-Maltiverse is an open IoC search engine to support the cybersecurity community on their research.
+Maltiverse is an open IoC search engine to support the cybersecurity community on their research an investigations. (https://whatis.maltiverse.com/)
 
 There is a REST API to handle the service and help automation which is defined here:
 
 https://app.swaggerhub.com/apis-docs/maltiverse/api/1.0.0-oas3
 
-This script gets attacking IP's from a SSH log in a Linux system and pushes them to the Maltiverse Search Engine.
+This script looks for attacking IP's into SSH log files in a Linux system and pushes them to the Maltiverse Search Engine.
 
 
 ## [1 - Requirements](#table-of-contents)
