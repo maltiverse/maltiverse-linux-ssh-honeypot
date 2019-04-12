@@ -19,12 +19,12 @@ class maltiverse_linux_ssh_honeypot():
         # Trying to get credentials from OS environment if not provided by parameters
         if not self.email or not self.password:
             try:
-                env_email = os.environ['MALTIVERSE_EMAIL']
+                env_email = os.environ.get('MALTIVERSE_EMAIL')
             except:
                 raise Exception('No credentials provided')
 
             try:
-                env_password = os.environ['MALTIVERSE_PASSWORD']
+                env_password = os.environ.get('MALTIVERSE_PASSWORD')
             except:
                 raise Exception('No credentials provided')
 

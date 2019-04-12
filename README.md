@@ -18,6 +18,7 @@ There are sereval requirements for this script to be accomplished:
  * Server running Linux OS
  * Service SSH running and exposed to the internet
  * Outbound connectivity to the resource https://api.maltiverse.com
+ * A Maltiverse user account with Team Researcher privileges. Only team researchers are allowed to upload indicators into Maltiverse. Create an account, then create or join a team, and get Team Researcher permissions!
 
 ## [2 - Installation](#table-of-contents)
 
@@ -39,7 +40,16 @@ To execute this script it is required to provide maltiverse username and passwor
 
 It can be done in two ways:
 
- ### By entry parameters:
+  ### A) By settingenvironment variables:
+  Parameters "--email" and "--password" running the command from the console will provide credentials to the script
+  ```
+  export MALTIVERSE_EMAIL=test@maltiverse.com
+  export MALTIVERSE_PASSWORD=secret!
+  python /opt/maltiverse_linux_ssh_honeypot.py
+  ```
+
+ ### B) By entry parameters:
+ Parameters "--email" and "--password" running the command from the console will provide credentials to the script
  ```
- python /opt/maltiverse_linux_ssh_honeypot.py -e test@maltiverse.com -p secret!
+ python /opt/maltiverse_linux_ssh_honeypot.py --email test@maltiverse.com --passwords secret!
  ```
