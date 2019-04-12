@@ -43,6 +43,11 @@ class maltiverse_linux_ssh_honeypot():
         api = Maltiverse()
         if api.login(email=self.email, password=self.password):
             for element in ip_list:
+
+                #Omitting empty lines
+                if not element:
+                    continue
+
                 ip_dict = {
                         'ip_addr': element,
                         'blacklist': [{
