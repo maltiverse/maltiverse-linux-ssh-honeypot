@@ -49,7 +49,7 @@ To execute this script it is required to provide maltiverse username and passwor
 
   To make it permanent after a reboot you should run the following commands as the user that will run the script (In example root):
   ```
-  echo "export MALTIVERSE_EMAIL=test@maltiverse.com" >> ~/.profile
+  echo "export MALTIVERSE_EMAIL=your@email.com" >> ~/.profile
   echo "export MALTIVERSE_PASSWORD=yoursecret!" >> ~/.profile
   ```
 
