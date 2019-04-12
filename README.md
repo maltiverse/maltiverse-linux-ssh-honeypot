@@ -55,13 +55,13 @@ To execute this script it is required to provide maltiverse username and passwor
 
   To schedule the script running as a task we can create an entry into the /etc/crontab file and do it hourly. The entry would look like this:
   ```
-  echo "58 * * * * $(whoami) python /opt/maltiverse_linux_ssh_honeypot.py" >> /etc/crontab
+  echo "30 * * * * $(whoami) python /opt/maltiverse_linux_ssh_honeypot.py" >> /etc/crontab
   ```
 
 
- ### B) For testing environments:
+ ### B) For Testing environments:
  Parameters "--email" and "--password" running the command from the console will provide credentials to the script
  ```
- python /opt/maltiverse_linux_ssh_honeypot.py --email test@maltiverse.com --passwords secret!
+ python /opt/maltiverse_linux_ssh_honeypot.py --email your@email.com --passwords secret!
  ```
  We do not recommend scheduling this script passing parameters by standard input using cron as /etc/crontab file is readable by all users in the system and passwords are at risk
