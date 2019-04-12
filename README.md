@@ -34,22 +34,34 @@ cd /opt && git clone https://github.com/maltiverse/maltiverse-linux-ssh-honeypot
 Now the script is located in /opt/maltiverse-linux-ssh-honeypot and ready to be executed
 
 
-## [3 - Configuration](#table-of-contents)
+## [3 - Configuration & Schedule](#table-of-contents)
 
 To execute this script it is required to provide maltiverse username and password to log in and upload the indicators of compromise found.
 
-It can be done in two ways:
 
-  ### A) By settingenvironment variables:
+  ### A) For Production environments:
   Parameters "--email" and "--password" running the command from the console will provide credentials to the script
   ```
-  export MALTIVERSE_EMAIL=test@maltiverse.com
-  export MALTIVERSE_PASSWORD=secret!
+  export MALTIVERSE_EMAIL=your@email.com
+  export MALTIVERSE_PASSWORD=yoursecret!
   python /opt/maltiverse_linux_ssh_honeypot.py
   ```
 
- ### B) By entry parameters:
+  To make it permanent after a reboot you should run the following commands as the user that will run the script (In example root):
+  ```
+  echo "export MALTIVERSE_EMAIL=test@maltiverse.com" >> ~/.profile
+  echo "export MALTIVERSE_PASSWORD=yoursecret!" >> ~/.profile
+  ```
+
+  To schedule the script running as a task we can create an entry into the /etc/crontab file and do it hourly. The entry would look like this:
+  ```
+  echo "58 * * * * $(whoami) python /opt/maltiverse_linux_ssh_honeypot.py" >> /etc/crontab
+  ```
+
+
+ ### B) For testing environments:
  Parameters "--email" and "--password" running the command from the console will provide credentials to the script
  ```
  python /opt/maltiverse_linux_ssh_honeypot.py --email test@maltiverse.com --passwords secret!
  ```
+ We do not recommend scheduling this script passing parameters by standard input using cron as /etc/crontab file is readable by all users in the system and passwords are at risk
