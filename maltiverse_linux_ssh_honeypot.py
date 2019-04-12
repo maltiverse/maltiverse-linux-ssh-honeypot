@@ -64,7 +64,7 @@ class maltiverse_linux_ssh_honeypot():
                 print ""
                 print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
                 print json.dumps(ip_dict, indent=4, sort_keys=True)
-                print json.dumps(res, indent=4, sort_keys=True)
+                print "RESULT: " + json.dumps(res, indent=4, sort_keys=True)
         else:
             raise Exception('Login failed')
 
